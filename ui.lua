@@ -17,8 +17,14 @@
                     expand = "HORIZONTAL",
                     action = function (self,key, string)
                         local parent = iup.GetDialog(self)
-                        if (key == 13)then
+                        if (key == 13)then -- enter key
                             HideDialog(parent)
+                            AllianceChat.send(self.value)
+                            self.value = ""
+                        end
+                        if (key == 27)then -- escape
+                            HideDialog(parent)
+                            self.value = ""
                         end
                     end,
                 },

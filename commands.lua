@@ -42,19 +42,20 @@ RegisterUserCommand('ac', Dispatch, "") -- register the dispatch function to exe
 --     end
 -- end
 
--- to make AllianceChannel provide a prompt via hotkey that appears
--- like it is part of the game's regular chat service
--- first we create a command, the name of which will unfortunately contain
--- the color number of the prompt.. it's dumb but that's what they provided
--- local command = AllianceChat.Settings.promptName
--- RegisterUserCommand(command, AllianceChat.Commands.prompt)
---
--- -- next we create an alias to the "prompt" command
--- -- when this alias is called, it will produce a prompt with the colored
--- -- channel name in place, prompting the user to type a message
--- gkinterface.GKProcessCommand("alias ac ".."'prompt "..AllianceChat.Settings.promptColor..command.."'") -- make an alias to bring up a prompt dialog
---
--- -- now we bind a key to the alias we created
--- gkinterface.GKProcessCommand("bind Y ac")
+-- -- to make AllianceChannel provide a prompt via hotkey that appears
+-- -- like it is part of the game's regular chat service
+-- -- first we create a command, the name of which will unfortunately contain
+-- -- the color number of the prompt.. it's dumb but that's what they provided
+local command = AllianceChat.Settings.promptName
+RegisterUserCommand(command, AllianceChat.Commands.prompt)
+
+-- next we create an alias to the "prompt" command
+-- when this alias is called, it will produce a prompt with the colored
+-- channel name in place, prompting the user to type a message
+
+gkinterface.GKProcessCommand("alias ".. command.." 'ac prompt'")
+
+-- now we bind a key to the alias we created
+gkinterface.GKProcessCommand("bind Y "..command)
 
 return AllianceChat.Commands

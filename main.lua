@@ -17,7 +17,6 @@ AllianceChat.UI = dofile "ui.lua"
 
 -- event hooks
 function AllianceChat.recv (_,data)
-    print (json.encode(data))
     local msg = AllianceChat.Settings.promptColor
     msg = msg..AllianceChat.Settings.channelName
     msg = msg..data.factionColor
@@ -32,7 +31,13 @@ function AllianceChat.recv (_,data)
 end
 
 -- send the user's message to the event for other plugins to process
-function AllianceChat.send(data)
+function AllianceChat.send(msg)
+    local data = {
+        name = GetPlayerName(),
+        guild = GetGuildTag() or "",
+        factionColor = rgbtohex(FactionColor_RGB[tonumber(GetPlayerFaction())]) or '127FFFFFF',
+        msg = msg,
+    }
     ProcessEvent("ALLIANCE_CHAT_SEND", data)
 end
 
