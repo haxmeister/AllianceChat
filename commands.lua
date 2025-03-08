@@ -28,20 +28,6 @@ end
 RegisterUserCommand('ac', Dispatch, "") -- register the dispatch function to execute when the command is given
 
 
-
--- function AllianceChat.Commands.prompt(_, data)
---     if data ~= nil then
---         local message = table.concat(data, " ") or ""
---         AllianceChat.send({
---             name      = GetPlayerName(),
---             guild     = GetGuildTag(),
---             factionColor = rgbtohex(FactionColor_RGB[tonumber(GetPlayerFaction())]) or '127FFFFFF',
---             msg       = message,
---
---         })
---     end
--- end
-
 -- -- to make AllianceChannel provide a prompt via hotkey that appears
 -- -- like it is part of the game's regular chat service
 -- -- first we create a command, the name of which will unfortunately contain
